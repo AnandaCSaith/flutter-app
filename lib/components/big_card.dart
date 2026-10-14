@@ -11,9 +11,24 @@ class BigCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Text("asLowerCase: ${appState.palavraAtual.asLowerCase}"),
+    final tema = Theme.of(context);
+
+    final estilo = tema.textTheme.displayLarge!.copyWith(
+      color: tema.colorScheme.onPrimary,
+      fontWeight: FontWeight.w100
+    );
+    
+    var palavra = appState.palavraAtual;
+    
+    return Card(
+      color: tema.colorScheme.primary,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Text(
+          appState.palavraAtual.asLowerCase, 
+          style:estilo, 
+          semanticsLabel: "${palavra.first} ${palavra.second}"),
+      )
     );
   }
 }
