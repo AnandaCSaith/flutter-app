@@ -1,7 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/home.dart';
-import 'package:flutterapp/linhas_colunas.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,7 +21,7 @@ class MainApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: LinhasColunasPage(appState: MainAppState(),),
+        home: HomePage(),
       ),
     );
   }
@@ -33,6 +32,16 @@ class MainAppState extends ChangeNotifier {
 
   void gerarNovaPalavra(){
     palavraAtual = WordPair.random();
+    notifyListeners();
+  }
+
+  var palavrasFavoitas = <WordPair>[];
+  void marcarComoFavorito(){
+    if(palavrasFavoitas.contains(palavraAtual)){
+      palavrasFavoitas.remove(palavraAtual);
+    } else {
+      palavrasFavoitas.add(palavraAtual);
+    }
     notifyListeners();
   }
 }
