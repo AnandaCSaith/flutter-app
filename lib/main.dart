@@ -29,19 +29,26 @@ class MainApp extends StatelessWidget {
 
 class MainAppState extends ChangeNotifier {
   var palavraAtual = WordPair.random();
-
   void gerarNovaPalavra(){
     palavraAtual = WordPair.random();
     notifyListeners();
   }
 
-  var palavrasFavoitas = <WordPair>[];
+  var palavrasFavoritas = <WordPair>[];
   void marcarComoFavorito(){
-    if(palavrasFavoitas.contains(palavraAtual)){
-      palavrasFavoitas.remove(palavraAtual);
+    if(palavrasFavoritas.contains(palavraAtual)){
+      palavrasFavoritas.remove(palavraAtual);
     } else {
-      palavrasFavoitas.add(palavraAtual);
+      palavrasFavoritas.add(palavraAtual);
     }
     notifyListeners();
+  }
+
+
+  void removerFavoritas( WordPair item){
+      if(palavrasFavoritas.contains(item)){
+      palavrasFavoritas.remove(item);
+      notifyListeners();
+    } 
   }
 }
