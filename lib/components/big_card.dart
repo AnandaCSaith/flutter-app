@@ -24,11 +24,26 @@ class BigCard extends StatelessWidget {
       color: tema.colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Text(
-          appState.palavraAtual.asLowerCase, 
-          style:estilo, 
-          semanticsLabel: "${palavra.first} ${palavra.second}"),
+        child: AnimatedSize(
+          duration: Duration(milliseconds: 200),
+          child: MergeSemantics(
+            child: Wrap(
+              children: [
+                Text(
+                  appState.palavraAtual.asLowerCase,
+                  style:estilo,
+                  semanticsLabel: "${palavra.first} ${palavra.second}"
+                ),
+              ]
+            )
+          ),
+        ),
       )
+        
+        //Text(
+          //appState.palavraAtual.asLowerCase, 
+          //style:estilo, 
+          //semanticsLabel: "${palavra.first} ${palavra.second}"),
     );
   }
 }
